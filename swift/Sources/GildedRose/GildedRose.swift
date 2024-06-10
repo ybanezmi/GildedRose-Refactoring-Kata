@@ -18,19 +18,7 @@ public class GildedRose {
             if items[index].quality < 50 {
                 items[index].quality = items[index].quality + 1
 
-                if items[index].name == ItemNames.backstagePassesToConcert {
-                    if items[index].sellIn < 11 {
-                        if items[index].quality < 50 {
-                            items[index].quality = items[index].quality + 1
-                        }
-                    }
-
-                    if items[index].sellIn < 6 {
-                        if items[index].quality < 50 {
-                            items[index].quality = items[index].quality + 1
-                        }
-                    }
-                }
+                increaseExtraQualityIfNeededForItem(item: items[index])
             }
         }
 
@@ -50,6 +38,24 @@ public class GildedRose {
                     items[index].quality = items[index].quality + 1
                 }
             }
+        }
+    }
+    
+    // Increase extra quality for "Backstage passes" items
+    // Like aged brie, increases in `Quality` as its `SellIn` value approaches
+    private func increaseExtraQualityIfNeededForItem(item: Item) {
+        guard item.isBackstagePasses else {
+            return
+        }
+        
+        // `Quality` increases by `2` when there are `10` days or less
+        if item.sellIn < 11, item.quality < 50 {
+            item.quality = item.quality + 1
+        }
+
+        // `Quality` increases by `3` when there are `5` days or less
+        if item.sellIn < 6, item.quality < 50 {
+            item.quality = item.quality + 1
         }
     }
     

@@ -11,4 +11,8 @@ extension Item {
     var isLegendary: Bool {
         name == ItemNames.sulfurasHandOfRagnaros
     }
+    
+    var isBackstagePasses: Bool {
+        name == ItemNames.backstagePassesToConcert
+    }
 }
