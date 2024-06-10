@@ -15,7 +15,7 @@ public class GildedRose {
         if items[index].name != ItemNames.agedBrie && items[index].name != ItemNames.backstagePassesToConcert {
             decreaseQualityIfNeededForItem(at: index)
         } else {
-            if items[index].quality < 50 {
+            if items[index].canIncreaseQuality {
                 items[index].quality = items[index].quality + 1
 
                 increaseExtraQualityIfNeededForItem(item: items[index])
@@ -34,7 +34,7 @@ public class GildedRose {
                     items[index].quality = items[index].quality - items[index].quality
                 }
             } else {
-                if items[index].quality < 50 {
+                if items[index].canIncreaseQuality {
                     items[index].quality = items[index].quality + 1
                 }
             }
@@ -49,12 +49,12 @@ public class GildedRose {
         }
         
         // `Quality` increases by `2` when there are `10` days or less
-        if item.sellIn < 11, item.quality < 50 {
+        if item.sellIn < 11, item.canIncreaseQuality {
             item.quality = item.quality + 1
         }
 
         // `Quality` increases by `3` when there are `5` days or less
-        if item.sellIn < 6, item.quality < 50 {
+        if item.sellIn < 6, item.canIncreaseQuality {
             item.quality = item.quality + 1
         }
     }

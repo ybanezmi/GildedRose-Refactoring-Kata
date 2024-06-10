@@ -15,4 +15,9 @@ extension Item {
     var isBackstagePasses: Bool {
         name == ItemNames.backstagePassesToConcert
     }
+    
+    // `Quality` of an item is never more than the maximum quality `50`
+    var canIncreaseQuality: Bool {
+        quality < ItemConstants.maxQuality
+    }
 }
