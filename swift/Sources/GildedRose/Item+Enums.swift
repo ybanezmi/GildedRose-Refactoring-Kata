@@ -13,6 +13,6 @@ enum ItemConstants {
 
 enum ItemNames {
     static let agedBrie = "Aged Brie"
-    static let backstagePassesToConcert = "Backstage passes to a TAFKAL80ETC concert"
-    static let sulfurasHandOfRagnaros = "Sulfuras, Hand of Ragnaros"
+    static let backstagePasses = "Backstage passes to a TAFKAL80ETC concert"
+    static let sulfuras = "Sulfuras, Hand of Ragnaros"
 }

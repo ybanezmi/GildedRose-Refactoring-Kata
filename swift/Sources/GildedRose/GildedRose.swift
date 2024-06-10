@@ -12,7 +12,7 @@ public class GildedRose {
     }
     
     private func updateItem(at index: Int) {
-        if items[index].name != ItemNames.agedBrie && items[index].name != ItemNames.backstagePassesToConcert {
+        if items[index].name != ItemNames.agedBrie && items[index].name != ItemNames.backstagePasses {
             decreaseQualityIfNeededForItem(at: index)
         } else {
             if items[index].canIncreaseQuality {
@@ -22,13 +22,13 @@ public class GildedRose {
             }
         }
 
-        if items[index].name != ItemNames.sulfurasHandOfRagnaros {
+        if items[index].name != ItemNames.sulfuras {
             items[index].sellIn = items[index].sellIn - 1
         }
 
         if items[index].sellIn < 0 {
             if items[index].name != ItemNames.agedBrie {
-                if items[index].name != ItemNames.backstagePassesToConcert {
+                if items[index].name != ItemNames.backstagePasses {
                     decreaseQualityIfNeededForItem(at: index)
                 } else {
                     items[index].quality = items[index].quality - items[index].quality

@@ -9,11 +9,11 @@ import Foundation
 
 extension Item {
     var isLegendary: Bool {
-        name == ItemNames.sulfurasHandOfRagnaros
+        name == ItemNames.sulfuras
     }
     
     var isBackstagePasses: Bool {
-        name == ItemNames.backstagePassesToConcert
+        name == ItemNames.backstagePasses
     }
     
     // `Quality` of an item is never more than the maximum quality `50`
