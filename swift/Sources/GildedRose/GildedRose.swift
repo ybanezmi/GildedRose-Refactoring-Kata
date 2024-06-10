@@ -13,11 +13,7 @@ public class GildedRose {
     
     private func updateItem(at index: Int) {
         if items[index].name != ItemNames.agedBrie && items[index].name != ItemNames.backstagePassesToConcert {
-            if items[index].quality > 0 {
-                if items[index].name != ItemNames.sulfurasHandOfRagnaros {
-                    items[index].quality = items[index].quality - 1
-                }
-            }
+            decreaseQualityIfNeededForItem(at: index)
         } else {
             if items[index].quality < 50 {
                 items[index].quality = items[index].quality + 1
@@ -45,11 +41,7 @@ public class GildedRose {
         if items[index].sellIn < 0 {
             if items[index].name != ItemNames.agedBrie {
                 if items[index].name != ItemNames.backstagePassesToConcert {
-                    if items[index].quality > 0 {
-                        if items[index].name != ItemNames.sulfurasHandOfRagnaros {
-                            items[index].quality = items[index].quality - 1
-                        }
-                    }
+                    decreaseQualityIfNeededForItem(at: index)
                 } else {
                     items[index].quality = items[index].quality - items[index].quality
                 }
@@ -59,5 +51,14 @@ public class GildedRose {
                 }
             }
         }
+    }
+    
+    private func decreaseQualityIfNeededForItem(at index: Int) {
+        let item = items[index]
+        guard item.quality > 0, !item.isLegendary else {
+            return
+        }
+        
+        items[index].quality = items[index].quality - 1
     }
 }
