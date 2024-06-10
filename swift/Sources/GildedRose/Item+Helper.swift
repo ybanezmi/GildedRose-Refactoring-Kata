@@ -25,4 +25,8 @@ extension Item {
     var canIncreaseQuality: Bool {
         quality < ItemConstants.maxQuality
     }
+    
+    var sellInDateHasPassed: Bool {
+        sellIn < 0
+    }
 }

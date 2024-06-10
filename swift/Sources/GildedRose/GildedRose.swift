@@ -14,30 +14,26 @@ public class GildedRose {
     private func update(item: Item) {
         if !item.isAgedBrie && !item.isBackstagePasses {
             decreaseQualityIfNeeded(for: item)
-        } else {
-            if item.canIncreaseQuality {
-                item.quality = item.quality + 1
+        } else if item.canIncreaseQuality {
+            item.quality = item.quality + 1
 
-                increaseExtraQualityIfNeeded(for: item)
-            }
+            increaseExtraQualityIfNeeded(for: item)
         }
-
+        
         if !item.isLegendary {
             item.sellIn = item.sellIn - 1
         }
 
-        if item.sellIn < 0 {
-            if !item.isAgedBrie {
-                if !item.isBackstagePasses {
-                    decreaseQualityIfNeeded(for: item)
-                } else {
-                    item.quality = item.quality - item.quality
-                }
-            } else {
-                if item.canIncreaseQuality {
-                    item.quality = item.quality + 1
-                }
-            }
+        guard item.sellInDateHasPassed else {
+            return
+        }
+            
+        if !item.isAgedBrie && !item.isBackstagePasses {
+            decreaseQualityIfNeeded(for: item)
+        } else if item.isBackstagePasses {
+            item.quality = item.quality - item.quality
+        } else if item.canIncreaseQuality {
+            item.quality = item.quality + 1
         }
     }
     
