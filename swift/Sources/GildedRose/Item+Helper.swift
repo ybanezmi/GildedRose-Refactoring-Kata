@@ -8,12 +8,17 @@
 import Foundation
 
 extension Item {
-    var isLegendary: Bool {
-        name == ItemNames.sulfuras
+    
+    var isAgedBrie: Bool {
+        name == ItemNames.agedBrie
     }
     
     var isBackstagePasses: Bool {
         name == ItemNames.backstagePasses
+    }
+    
+    var isLegendary: Bool {
+        name == ItemNames.sulfuras
     }
     
     // `Quality` of an item is never more than the maximum quality `50`

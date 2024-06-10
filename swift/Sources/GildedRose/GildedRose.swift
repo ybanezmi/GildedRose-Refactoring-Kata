@@ -7,35 +7,35 @@ public class GildedRose {
 
     public func updateQuality() {
         for index in 0 ..< items.count {
-            updateItem(at: index)
+            update(item: items[index])
         }
     }
     
-    private func updateItem(at index: Int) {
-        if items[index].name != ItemNames.agedBrie && items[index].name != ItemNames.backstagePasses {
-            decreaseQualityIfNeededForItem(at: index)
+    private func update(item: Item) {
+        if !item.isAgedBrie && !item.isBackstagePasses {
+            decreaseQualityIfNeeded(for: item)
         } else {
-            if items[index].canIncreaseQuality {
-                items[index].quality = items[index].quality + 1
+            if item.canIncreaseQuality {
+                item.quality = item.quality + 1
 
-                increaseExtraQualityIfNeededForItem(item: items[index])
+                increaseExtraQualityIfNeeded(for: item)
             }
         }
 
-        if items[index].name != ItemNames.sulfuras {
-            items[index].sellIn = items[index].sellIn - 1
+        if !item.isLegendary {
+            item.sellIn = item.sellIn - 1
         }
 
-        if items[index].sellIn < 0 {
-            if items[index].name != ItemNames.agedBrie {
-                if items[index].name != ItemNames.backstagePasses {
-                    decreaseQualityIfNeededForItem(at: index)
+        if item.sellIn < 0 {
+            if !item.isAgedBrie {
+                if !item.isBackstagePasses {
+                    decreaseQualityIfNeeded(for: item)
                 } else {
-                    items[index].quality = items[index].quality - items[index].quality
+                    item.quality = item.quality - item.quality
                 }
             } else {
-                if items[index].canIncreaseQuality {
-                    items[index].quality = items[index].quality + 1
+                if item.canIncreaseQuality {
+                    item.quality = item.quality + 1
                 }
             }
         }
@@ -43,7 +43,7 @@ public class GildedRose {
     
     // Increase extra quality for "Backstage passes" items
     // Like aged brie, increases in `Quality` as its `SellIn` value approaches
-    private func increaseExtraQualityIfNeededForItem(item: Item) {
+    private func increaseExtraQualityIfNeeded(for item: Item) {
         guard item.isBackstagePasses else {
             return
         }
@@ -59,12 +59,11 @@ public class GildedRose {
         }
     }
     
-    private func decreaseQualityIfNeededForItem(at index: Int) {
-        let item = items[index]
+    private func decreaseQualityIfNeeded(for item: Item) {
         guard item.quality > 0, !item.isLegendary else {
             return
         }
         
-        items[index].quality = items[index].quality - 1
+        item.quality = item.quality - 1
     }
 }
