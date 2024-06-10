@@ -33,7 +33,7 @@ public class GildedRose {
     private func updateSellIn(for item: Item) {
         // Decrease `sellIn` value at the end of each day except for a legendary item
         if !item.isLegendary {
-            item.sellIn = item.sellIn - 1
+            item.sellIn -= 1
         }
     }
     
@@ -49,7 +49,7 @@ public class GildedRose {
             
         // Increase quality the older the item gets if possible
         } else if item.canIncreaseQuality {
-            item.quality = item.quality + 1
+            item.quality += 1
 
             // Increase additional quality if needed
             increaseExtraQualityIfNeeded(for: item)
@@ -65,12 +65,12 @@ public class GildedRose {
         
         // `Quality` increases by `2` when there are `10` days or less
         if item.sellIn < 11, item.canIncreaseQuality {
-            item.quality = item.quality + 1
+            item.quality += 1
         }
 
         // `Quality` increases by `3` when there are `5` days or less
         if item.sellIn < 6, item.canIncreaseQuality {
-            item.quality = item.quality + 1
+            item.quality += 1
         }
     }
     
@@ -80,6 +80,11 @@ public class GildedRose {
             return
         }
         
-        item.quality = item.quality - 1
+        item.quality -= 1
+        
+        // "Conjured" items degrade in Quality twice as fast as normal items
+        if !item.sellInDateHasPassed, item.isConjured {
+            item.quality -= 1
+        }
     }
 }

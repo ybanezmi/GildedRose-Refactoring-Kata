@@ -15,8 +15,7 @@ class GildedRoseTests: XCTestCase {
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 14, quality: 21),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 9, quality: 50),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 4, quality: 50),
-            // this conjured item does not work properly yet
-            Item(name: "Conjured Mana Cake", sellIn: 2, quality: 5),
+            Item(name: "Conjured Mana Cake", sellIn: 2, quality: 4),
         ],
         // Day 2
         [
@@ -28,8 +27,7 @@ class GildedRoseTests: XCTestCase {
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 13, quality: 22),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 8, quality: 50),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 3, quality: 50),
-            // this conjured item does not work properly yet
-            Item(name: "Conjured Mana Cake", sellIn: 1, quality: 4),
+            Item(name: "Conjured Mana Cake", sellIn: 1, quality: 2),
         ],
         // Day 3
         [
@@ -41,8 +39,7 @@ class GildedRoseTests: XCTestCase {
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 12, quality: 23),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 7, quality: 50),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 2, quality: 50),
-            // this conjured item does not work properly yet
-            Item(name: "Conjured Mana Cake", sellIn: 0, quality: 3),
+            Item(name: "Conjured Mana Cake", sellIn: 0, quality: 0),
         ],
         // Day 4
         [
@@ -54,8 +51,7 @@ class GildedRoseTests: XCTestCase {
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 11, quality: 24),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 6, quality: 50),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 1, quality: 50),
-            // this conjured item does not work properly yet
-            Item(name: "Conjured Mana Cake", sellIn: -1, quality: 1),
+            Item(name: "Conjured Mana Cake", sellIn: -1, quality: 0),
         ],
         // Day 5
         [
@@ -67,7 +63,6 @@ class GildedRoseTests: XCTestCase {
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 25),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 50),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0, quality: 50),
-            // this conjured item does not work properly yet
             Item(name: "Conjured Mana Cake", sellIn: -2, quality: 0),
         ],
         // Day 6
@@ -80,7 +75,6 @@ class GildedRoseTests: XCTestCase {
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 9, quality: 27),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 4, quality: 50),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: -1, quality: 0),
-            // this conjured item does not work properly yet
             Item(name: "Conjured Mana Cake", sellIn: -3, quality: 0),
         ],
         // Day 7
@@ -93,7 +87,6 @@ class GildedRoseTests: XCTestCase {
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 8, quality: 29),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 3, quality: 50),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: -2, quality: 0),
-            // this conjured item does not work properly yet
             Item(name: "Conjured Mana Cake", sellIn: -4, quality: 0),
         ]
     ]
@@ -109,7 +102,6 @@ class GildedRoseTests: XCTestCase {
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 20),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 49),
             Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 49),
-            // this conjured item does not work properly yet
             Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6),
         ]
         let app = GildedRose(items: items)
