@@ -15,3 +15,9 @@ extension Item: CustomStringConvertible {
         name + ", " + String(sellIn) + ", " + String(quality)
     }
 }
+
+extension Item: Equatable {
+    public static func == (lhs: Item, rhs: Item) -> Bool {
+        lhs.name == rhs.name && lhs.sellIn == rhs.sellIn && lhs.quality == rhs.quality
+    }
+}
