@@ -17,6 +17,7 @@ extension Item {
         name == ItemNames.backstagePasses
     }
     
+    // Determines an item that never has to be sold or decrease in `Quality`
     var isLegendary: Bool {
         name == ItemNames.sulfuras
     }

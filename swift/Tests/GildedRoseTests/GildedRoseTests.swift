@@ -98,6 +98,7 @@ class GildedRoseTests: XCTestCase {
         ]
     ]
     
+    // Test item values within 7 days
     func test7Days() throws {
         let items = [
             Item(name: "+5 Dexterity Vest", sellIn: 10, quality: 20),
