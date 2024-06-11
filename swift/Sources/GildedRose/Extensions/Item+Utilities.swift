@@ -1,5 +1,5 @@
 //
-//  Item+Helper.swift
+//  Item+Utilities.swift
 //
 //
 //  Created by Michelle Ybanez on 6/10/24.

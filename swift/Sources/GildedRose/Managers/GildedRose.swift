@@ -1,3 +1,15 @@
+//
+//  GildedRose.swift
+//
+//  A small inn with a prime location in a prominent city ran by a friendly
+//  innkeeper named Allison. We also buy and sell only the finest goods.
+//  Unfortunately, our goods are constantly degrading in Quality
+//  as they approach their sell by date.
+//
+//  This is the system in place that updates our inventory for us.
+//
+//  Modified by Michelle Ybanez on 6/10/24.
+//
 public class GildedRose {
     var items: [Item]
 
@@ -5,14 +17,17 @@ public class GildedRose {
         self.items = items
     }
 
-    // Updates the quality of the items stored in the Gilded Rose
+    /// Updates the quality of the items stored in the inventory
     public func updateQuality() {
         for item in items {
             update(item: item)
         }
     }
     
-    // Updates an item based on certain conditions
+    /// Updates an item based on certain conditions
+    ///
+    /// - Parameters:
+    ///     - item: The item to be updated
     private func update(item: Item) {
         
         // Update quality at the end of each day
@@ -29,7 +44,10 @@ public class GildedRose {
         updateQuality(for: item)
     }
     
-    // Updates the sell in value for an item
+    /// Updates the sell in value for an item
+    ///
+    /// - Parameters:
+    ///     - item: The item to be updated for sell in value.
     private func updateSellIn(for item: Item) {
         // Decrease `sellIn` value at the end of each day except for a legendary item
         if !item.isLegendary {
@@ -37,7 +55,10 @@ public class GildedRose {
         }
     }
     
-    // Updates the quality for an item based on certain conditions
+    /// Updates the quality for an item based on certain conditions
+    ///
+    /// - Parameters:
+    ///     - item: The item to be updated for quality value.
     private func updateQuality(for item: Item) {
         // Decrease quality at the end of each day except for `Aged Brie` and `Backstage Passes`
         if !item.isAgedBrie && !item.isBackstagePasses {
@@ -56,8 +77,11 @@ public class GildedRose {
         }
     }
     
-    // Increase extra quality for "Backstage passes" items
-    // Like aged brie, increases in `Quality` as its `SellIn` value approaches
+    /// Increase extra quality for "Backstage passes" items
+    /// Like aged brie, increases in `Quality` as its `SellIn` value approaches
+    ///
+    /// - Parameters:
+    ///     - item: The item to increase quality if needed
     private func increaseExtraQualityIfNeeded(for item: Item) {
         guard !item.sellInDateHasPassed, item.isBackstagePasses else {
             return
@@ -74,7 +98,10 @@ public class GildedRose {
         }
     }
     
-    // Decreases the quality for non-legendary items and for items with quality greater than 0
+    /// Decreases the quality for non-legendary items and for items with quality greater than 0
+    ///
+    /// - Parameters:
+    ///     - item: The item to decrease quality if needed
     private func decreaseQualityIfNeeded(for item: Item) {
         guard item.quality > 0, !item.isLegendary else {
             return
