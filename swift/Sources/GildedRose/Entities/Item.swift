@@ -1,4 +1,4 @@
-//
+ //
 //  Item.swift
 //
 //  The goods stored in the Gilded Rose inventory.
@@ -22,14 +22,18 @@ public class Item {
     }
 }
 
+/// Converts to formatted description
 extension Item: CustomStringConvertible {
     public var description: String {
         name + ", " + String(sellIn) + ", " + String(quality)
     }
 }
 
+/// Compares the equality of 2 items
 extension Item: Equatable {
     public static func == (lhs: Item, rhs: Item) -> Bool {
-        lhs.name == rhs.name && lhs.sellIn == rhs.sellIn && lhs.quality == rhs.quality
+        lhs.name == rhs.name 
+        && lhs.sellIn == rhs.sellIn
+        && lhs.quality == rhs.quality
     }
 }

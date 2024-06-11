@@ -11,8 +11,10 @@
 //  Modified by Michelle Ybanez on 6/10/24.
 //
 public class GildedRose {
+    
+    /// The goods in the inventory
     var items: [Item]
-
+    
     public init(items: [Item]) {
         self.items = items
     }
