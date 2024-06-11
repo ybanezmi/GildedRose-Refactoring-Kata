@@ -5,7 +5,7 @@
 //
 //  Modified by Michelle Ybanez on 6/10/24.
 //
-public class Item {
+public struct Item: Codable {
     /// The name of the item
     public var name: String
     
@@ -35,5 +35,23 @@ extension Item: Equatable {
         lhs.name == rhs.name 
         && lhs.sellIn == rhs.sellIn
         && lhs.quality == rhs.quality
+    }
+}
+
+extension Item {
+    mutating func decreaseSellIn() {
+        sellIn -= 1
+    }
+    
+    mutating func increaseQuality() {
+        quality += 1
+    }
+    
+    mutating func decreaseQuality() {
+        quality -= 1
+    }
+    
+    mutating func clearQuality() {
+        quality = 0
     }
 }

@@ -2,24 +2,25 @@
 //  ContentView.swift
 //  GildedRoseDemo
 //
-//  Created by user259831 on 6/11/24.
+//  Created by Michelle Ybanez on 6/11/24.
 //
 
 import SwiftUI
 import SwiftData
+import GildedRose
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var itemContainers: [ItemContainer]
 
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(items) { item in
+                ForEach(itemContainers) { itemContainer in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        DetailView(itemContainer: itemContainer)
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        ListItem(item: itemContainer.item)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -41,7 +42,7 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            let newItem = ItemContainer(timestamp: Date(), item: Item(name: "Conjured", sellIn: 80, quality: 80))
             modelContext.insert(newItem)
         }
     }
@@ -49,7 +50,7 @@ struct ContentView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                modelContext.delete(itemContainers[index])
             }
         }
     }
@@ -57,5 +58,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: ItemContainer.self, inMemory: true)
 }
