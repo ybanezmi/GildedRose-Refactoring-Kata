@@ -9,22 +9,15 @@ import SwiftUI
 import SwiftData
 import GildedRose
 
-struct ContentView: View {
+public struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var itemContainers: [ItemContainer]
+    @Query(sort: \ItemContainer.timestamp) private var itemContainers: [ItemContainer]
+    
+    @StateObject private var viewModel = ContentViewModel()
 
-    var body: some View {
+    public var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(itemContainers) { itemContainer in
-                    NavigationLink {
-                        DetailView(itemContainer: itemContainer)
-                    } label: {
-                        ListItem(item: itemContainer.item)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
+            tabView
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
@@ -38,6 +31,36 @@ struct ContentView: View {
         } detail: {
             Text("Select an item")
         }
+        .onAppear(perform: {
+            viewModel.updateItems(for: 3, items: itemContainers.map { $0.item })
+        })
+    }
+    
+    @ViewBuilder
+    private var tabView: some View {
+        TabView {
+            ForEach(viewModel.tabViewModels) { tabViewModel in
+                List {
+                    HStack {
+                        Spacer()
+                        Text("DAY \(tabViewModel.id)")
+                            .font(.headline)
+                        Spacer()
+                    }
+                    
+                    ForEach(0 ..< tabViewModel.items.count, id: \.self) { index in
+                        NavigationLink {
+                            DetailView(itemContainer: itemContainers[index])
+                        } label: {
+                            ListItem(item: tabViewModel.items[index])
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
+            }
+        }
+        .tabViewStyle(.page(indexDisplayMode: .always))
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
     }
 
     private func addItem() {

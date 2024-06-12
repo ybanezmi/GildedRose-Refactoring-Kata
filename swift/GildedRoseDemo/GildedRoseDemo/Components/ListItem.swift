@@ -14,7 +14,7 @@ struct ListItem: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(item.name)
-                .font(.headline)
+                .font(.subheadline)
             Text("Sell in: \(item.sellIn) days, Quality: \(item.quality)")
                 .font(.caption)
         }
