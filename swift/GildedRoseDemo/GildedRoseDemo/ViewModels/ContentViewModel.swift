@@ -10,7 +10,7 @@ import GildedRose
 
 @MainActor
 class ContentViewModel: ObservableObject {
-//    @Published var items: [Item] = []
+    @Published var simulationDays: String = "0"
     @Published var tabViewModels: [TabViewModel] = []
     
     public init() { }
@@ -18,7 +18,7 @@ class ContentViewModel: ObservableObject {
     func updateItems(for days: Int, items: [Item]) {
         let gildedRose = GildedRose(items: items)
         tabViewModels = []
-        for day in 0 ..< days {
+        for day in 0 ... days {
             tabViewModels.append(TabViewModel(id: day,
                                               items: gildedRose.items))
             gildedRose.updateQuality()

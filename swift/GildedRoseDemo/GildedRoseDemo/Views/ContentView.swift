@@ -17,6 +17,17 @@ public struct ContentView: View {
 
     public var body: some View {
         NavigationSplitView {
+            HStack {
+                Text("Days to simulate: ")
+                Spacer()
+                TextField(text: $viewModel.simulationDays) {
+                    Text("Days to simulate")
+                }
+                .keyboardType(.numberPad)
+                .multilineTextAlignment(.trailing)
+            }
+            .padding(.horizontal, 16)
+            
             tabView
             .navigationTitle("Gilded Rose")
             .toolbar {
@@ -32,8 +43,9 @@ public struct ContentView: View {
         } detail: {
             Text("Select an item")
         }
-        .onAppear(perform: {
-            viewModel.updateItems(for: 3, items: itemContainers.map { $0.item })
+        .onReceive(viewModel.$simulationDays, perform: { _ in
+            viewModel.updateItems(for: Int(viewModel.simulationDays) ?? 0,
+                                  items: itemContainers.map { $0.item })
         })
     }
     
