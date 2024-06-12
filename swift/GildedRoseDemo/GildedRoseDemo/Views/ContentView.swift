@@ -14,6 +14,7 @@ public struct ContentView: View {
     @Query(sort: \ItemContainer.timestamp) private var itemContainers: [ItemContainer]
     
     @StateObject private var viewModel = ContentViewModel()
+    @State private var currentDay: Int = 0
 
     public var body: some View {
         NavigationSplitView {
@@ -23,6 +24,7 @@ public struct ContentView: View {
                 TextField(text: $viewModel.simulationDays) {
                     Text("Days to simulate")
                 }
+                .textFieldStyle(.roundedBorder)
                 .keyboardType(.numberPad)
                 .multilineTextAlignment(.trailing)
             }
@@ -44,20 +46,25 @@ public struct ContentView: View {
             Text("Select an item")
         }
         .onReceive(viewModel.$simulationDays, perform: { _ in
-            viewModel.updateItems(for: Int(viewModel.simulationDays) ?? 0,
+            viewModel.updateItems(for: viewModel.simulationDays.toIntOrZero,
                                   items: itemContainers.map { $0.item })
         })
     }
     
     @ViewBuilder
     private var tabView: some View {
-        TabView {
+        TabView(selection: $currentDay) {
             ForEach(viewModel.tabViewModels) { tabViewModel in
                 List {
                     HStack {
                         Spacer()
-                        Text("DAY \(tabViewModel.id)")
-                            .font(.headline)
+                        Stepper(
+                            value: $currentDay, 
+                            in: 0...viewModel.simulationDays.toIntOrZero,
+                            label: {
+                                Text("DAY \(tabViewModel.id)")
+                                    .font(.headline)
+                            })
                         Spacer()
                     }
                     
@@ -78,7 +85,12 @@ public struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = ItemContainer(timestamp: Date(), item: Item(name: "Conjured", sellIn: 80, quality: 80))
+            let newItem = ItemContainer(
+                timestamp: Date(),
+                item: Item(
+                    name: "Conjured",
+                    sellIn: 80,
+                    quality: 80))
             modelContext.insert(newItem)
         }
     }
