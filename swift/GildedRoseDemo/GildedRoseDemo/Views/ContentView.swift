@@ -32,6 +32,7 @@ public struct ContentView: View {
             
             tabView
             .navigationTitle("Gilded Rose")
+            /* TODO: implement add and edit item
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
@@ -42,6 +43,7 @@ public struct ContentView: View {
                     }
                 }
             }
+             */
         } detail: {
             Text("Select an item")
         }
@@ -75,7 +77,8 @@ public struct ContentView: View {
                             ListItem(item: tabViewModel.items[index])
                         }
                     }
-                    .onDelete(perform: deleteItems)
+                    // TODO: implement delete items
+                    // .onDelete(perform: deleteItems)
                 }
             }
         }
