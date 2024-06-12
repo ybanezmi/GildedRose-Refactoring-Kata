@@ -37,21 +37,3 @@ extension Item: Equatable {
         && lhs.quality == rhs.quality
     }
 }
-
-extension Item {
-    mutating func decreaseSellIn() {
-        sellIn -= 1
-    }
-    
-    mutating func increaseQuality() {
-        quality += 1
-    }
-    
-    mutating func decreaseQuality() {
-        quality -= 1
-    }
-    
-    mutating func clearQuality() {
-        quality = 0
-    }
-}

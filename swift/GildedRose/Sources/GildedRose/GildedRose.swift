@@ -19,7 +19,7 @@ public class GildedRose {
         self.items = items
     }
 
-    /// Updates the quality of the items stored in the inventory
+    /// Updates the quality of the items stored in the inventory at the end of each day
     public func updateQuality() {
         items.enumerated().map { index, item in
             var itemToUpdate = item
@@ -55,7 +55,7 @@ extension Item {
     fileprivate mutating func updateSellIn() {
         // Decrease `sellIn` value at the end of each day except for a legendary item
         if !isLegendary {
-            decreaseSellIn()
+            sellIn -= 1
         }
     }
     
