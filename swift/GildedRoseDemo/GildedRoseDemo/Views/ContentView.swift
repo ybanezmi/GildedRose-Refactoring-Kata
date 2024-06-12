@@ -18,6 +18,7 @@ public struct ContentView: View {
     public var body: some View {
         NavigationSplitView {
             tabView
+            .navigationTitle("Gilded Rose")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
